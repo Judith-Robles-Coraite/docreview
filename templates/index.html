@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plagiarism Detection Results</title>
+</head>
+<body>
+    <h1>Decteción de plagio Encontrado</h1>
+    <ul>
+        {% for result in results %}
+        <li>
+            <h2>Documento: {{ result['filename'] }}</h2>
+            <ul>
+                {% for res in result['results'] %}
+                <li>
+                    <h3>Página en el documento principal: {{ res['main_page'] + 8 }}</h3>
+                    <h3>Página en el documento plagiado: {{ res['other_page'] + 8 }}</h3>
+                    <h4>Párrafos plagiados:</h4>
+                    <ul>
+                        {% for main_para, other_para, similarity in res['similar_paragraphs'] %}
+                        <li>
+                            <p>Similitud: {{ similarity }}</p>
+                            <p>Documento principal: {{ main_para }}</p>
+                            <p>Documento plagiado: {{ other_para }}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
+
+utilizar django 
